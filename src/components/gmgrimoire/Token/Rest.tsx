@@ -17,7 +17,7 @@ export const Rest = ({ id }: { id: string }) => {
                     rest([item], "Short Rest");
                 }}
             >
-                short
+                短休
             </button>
             <button
                 className={"button long"}
@@ -25,7 +25,7 @@ export const Rest = ({ id }: { id: string }) => {
                     rest([item], "Long Rest");
                 }}
             >
-                long
+                长休
             </button>
         </div>
     );
