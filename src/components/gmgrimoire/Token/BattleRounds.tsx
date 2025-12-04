@@ -120,7 +120,8 @@ export const BattleRounds = () => {
     const changeCurrent = async (mod: number) => {
         if (groups.length === 0 || battleTokens.length === 0) {
             stopBattle();
-            await OBR.notification.show("GM's Grimoire - No groups or tokens assigned for battle!", "WARNING");
+            // 若未选择可参与战斗的分组或 Token，提示 GM 并中止
+            await OBR.notification.show("GM's Grimoire - 未选择可参与战斗的分组或棋子！", "WARNING");
             return;
         }
         const currentTokenIndex = current ? battleTokens.findIndex((bt) => bt.item.id === current) : 0;
@@ -172,10 +173,7 @@ export const BattleRounds = () => {
             }}
         >
             {!battle ? (
-                <Tippy
-                    content={"no groups or tokens selected for battle"}
-                    disabled={groups.length > 0 || battleTokens.length > 0}
-                >
+                <Tippy content={"未选择可进入战斗的分组或棋子"} disabled={groups.length > 0 || battleTokens.length > 0}>
                     <div>
                         <button
                             disabled={groups.length === 0 || battleTokens.length === 0}
@@ -187,18 +185,18 @@ export const BattleRounds = () => {
                                 }
                             }}
                         >
-                            Start Battle
+                            开始战斗
                         </button>
                     </div>
                 </Tippy>
             ) : (
                 <>
                     <button className={"button battle-round-button back"} disabled={hold} {...onLongPressBack}>
-                        Back
+                        上一个
                     </button>
                     <span className={"battle-round"}>{battleRound}</span>
                     <button className={"button battle-round-button next"} disabled={hold} {...onLongPressNext}>
-                        Next
+                        下一个
                     </button>
                     <button
                         className={"button"}
@@ -206,7 +204,7 @@ export const BattleRounds = () => {
                             stopBattle();
                         }}
                     >
-                        Stop battle
+                        结束战斗
                     </button>
                 </>
             )}
