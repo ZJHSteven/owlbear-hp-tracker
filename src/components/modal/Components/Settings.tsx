@@ -41,14 +41,15 @@ export const Settings = () => {
                 X
             </button>
             <div className={"global-setting"}>
-                <h2>Settings</h2>
+                {/* 设置主标题 */}
+                <h2>设置</h2>
                 <>
                     <div className={"settings-context vertical"}>
-                        <h3>Room Settings</h3>
-                        <span className={"small"}>(Shared across all scenes in opened in the current Room)</span>
+                        <h3>房间设置</h3>
+                        <span className={"small"}>(对当前房间内的所有场景生效)</span>
                     </div>
                     <div className={"ruleset setting"}>
-                        Statblock Game Rules:{" "}
+                        规则集（Statblock 来源）：{" "}
                         <Switch
                             labels={{ left: "DnD", right: "PF" }}
                             onChange={(checked) => {
@@ -63,7 +64,7 @@ export const Settings = () => {
                         />
                     </div>
                     <div className={"tabletop-almanac setting"}>
-                        Tabletop Almanac API Key:
+                        Tabletop Almanac API Key：
                         <input
                             type={"password"}
                             value={room?.tabletopAlmanacAPIKey || ""}
@@ -74,7 +75,7 @@ export const Settings = () => {
                     </div>
                     <div className={"hp-mode setting-group vertical"}>
                         <div>
-                            HP Bar Segments:{" "}
+                            HP 条分段：{" "}
                             <input
                                 type={"text"}
                                 size={2}
@@ -93,7 +94,7 @@ export const Settings = () => {
                             />
                         </div>
                         <div>
-                            Disable HP Bar:
+                            关闭 HP 条：
                             <input
                                 type={"checkbox"}
                                 checked={!!room?.disableHpBar}
@@ -116,7 +117,7 @@ export const Settings = () => {
                             />
                         </div>
                         <div>
-                            Disable Color Gradient For Players:
+                            玩家端禁用颜色渐变：
                             <input
                                 type={"checkbox"}
                                 checked={!!room?.disableColorGradient}
@@ -130,7 +131,7 @@ export const Settings = () => {
                     </div>
                     <div className={"setting-group vertical"}>
                         <div className={"hp-position setting"}>
-                            Text and Bar Offset:{" "}
+                            HP 文本/条偏移：{" "}
                             <input
                                 type={"number"}
                                 size={2}
@@ -150,7 +151,7 @@ export const Settings = () => {
                             />
                         </div>
                         <div className={"ac setting"}>
-                            AC Offset:
+                            AC 盾牌偏移：
                             <div>
                                 X{" "}
                                 <input
@@ -175,7 +176,7 @@ export const Settings = () => {
                     </div>
                     <div className={"dice-roller-enabled setting-group vertical"}>
                         <div className={"setting"}>
-                            Select Dice Roller:
+                            选择骰子方案：
                             <select
                                 value={room?.diceRoller || DICE_ROLLER.DDDICE}
                                 onChange={async (e) => {
@@ -197,7 +198,7 @@ export const Settings = () => {
                                 }}
                             >
                                 <option value={DICE_ROLLER.DDDICE}>dddice</option>
-                                <option value={DICE_ROLLER.SIMPLE}>Calculated</option>
+                                <option value={DICE_ROLLER.SIMPLE}>本地计算</option>
                                 {dicePlusAvailable ? <option value={DICE_ROLLER.DICE_PLUS}>Dice+</option> : null}
                             </select>
                         </div>
@@ -211,12 +212,8 @@ export const Settings = () => {
                                 }}
                                 className={"setting"}
                             >
-                                Checkout{" "}
-                                <Tippy
-                                    content={
-                                        "After adding Dice+ to a room you have to reload the page to be able to select it"
-                                    }
-                                >
+                                安装{" "}
+                                <Tippy content={"将 Dice+ 安装到房间后需刷新页面才能在下拉框中选择"}>
                                     <a
                                         style={{ fontWeight: "600", fontSize: "1rem" }}
                                         href={
@@ -227,12 +224,12 @@ export const Settings = () => {
                                         Dice+
                                     </a>
                                 </Tippy>{" "}
-                                for a OBR native 3D dice roller.
+                                可获得 OBR 原生 3D 骰子
                             </div>
                         ) : null}
                     </div>
                     <div className={"negative-numbers setting"}>
-                        Allow negative HP/AC:
+                        允许 HP/AC 为负：
                         <input
                             type={"checkbox"}
                             checked={room?.allowNegativeNumbers || false}
@@ -242,7 +239,7 @@ export const Settings = () => {
                         />
                     </div>
                     <div className={"auto-limit setting"}>
-                        Disable automatic limit reset (based on formula):
+                        禁用基于公式的自动次数重置：
                         <input
                             type={"checkbox"}
                             checked={room?.disableLimitRolls || false}
@@ -252,7 +249,7 @@ export const Settings = () => {
                         />
                     </div>
                     <div className={"player-sort setting"}>
-                        Sort Tokens by Initiative for Players:
+                        玩家端按先攻排序 Token：
                         <input
                             type={"checkbox"}
                             checked={room?.playerSort || false}
@@ -262,7 +259,7 @@ export const Settings = () => {
                         />
                     </div>
                     <div className={"initiative-dice setting"}>
-                        Set Initiative Dice:
+                        先攻骰面数：
                         <input
                             type={"number"}
                             size={1}
@@ -274,11 +271,11 @@ export const Settings = () => {
                     </div>
                     <div className={"statblock-popover setting-group vertical"}>
                         <div className={"settings-context vertical"}>
-                            <h4>Statblock Popover dimensions</h4>
-                            <span className={"small"}>(bigger than the current viewport is not possible)</span>
+                            <h4>Statblock 弹窗尺寸</h4>
+                            <span className={"small"}>(不可超过当前视窗大小)</span>
                         </div>
                         <label>
-                            width{" "}
+                            宽度{" "}
                             <input
                                 type={"number"}
                                 defaultValue={room?.statblockPopover?.width || 500}
@@ -306,7 +303,7 @@ export const Settings = () => {
                             />
                         </label>
                         <label>
-                            height{" "}
+                            高度{" "}
                             <input
                                 type={"number"}
                                 defaultValue={room?.statblockPopover?.height || 600}
@@ -334,7 +331,7 @@ export const Settings = () => {
                         </label>
                     </div>
                     <div className={"update-notification setting"}>
-                        Don't show Changelog on updates:
+                        更新后不自动弹出更新日志：
                         <input
                             type={"checkbox"}
                             checked={room?.ignoreUpdateNotification || false}
@@ -344,13 +341,13 @@ export const Settings = () => {
                         />
                     </div>
                     <div className={"settings-context vertical"}>
-                        <h3>Scene Settings</h3>
-                        <span className={"small"}>(Settings only affect the current Scene)</span>
+                        <h3>场景设置</h3>
+                        <span className={"small"}>(仅影响当前场景)</span>
                     </div>
                     {scene ? (
                         <Groups />
                     ) : (
-                        <span className={"warning"}>Scene Settings only available once Scene is open</span>
+                        <span className={"warning"}>需打开场景后才可配置场景设置</span>
                     )}
                 </>
             </div>
