@@ -128,25 +128,25 @@ const MultiContent = ({ ids }: { ids: Array<string> }) => {
                     <input className={"input"} ref={inputRef} type={"number"} defaultValue={0} />
                     <button
                         className={"heal"}
-                        title={"heal"}
+                        title={"群体治疗"}
                         onClick={() => {
                             if (inputRef.current) {
                                 changeHP(parseInt(inputRef.current.value));
                             }
                         }}
                     >
-                        Heal
+                        治疗
                     </button>
                     <button
                         className={"damage"}
-                        title={"damage"}
+                        title={"群体伤害"}
                         onClick={() => {
                             if (inputRef.current) {
                                 changeHP(parseInt(inputRef.current.value) * -1);
                             }
                         }}
                     >
-                        Damage
+                        伤害
                     </button>
                 </div>
                 {playerContext.role === "GM" ? (
@@ -162,7 +162,7 @@ const MultiContent = ({ ids }: { ids: Array<string> }) => {
                                 }}
                                 active={getHpOnMap(items)}
                                 players={getHpForPlayers(items)}
-                                tooltip={"Show HP on map (right click for players)"}
+                                tooltip={"在地图上显示/隐藏生命值（右键切换玩家可见）"}
                             />
                         </div>
                         <div className={"setting"}>
@@ -176,7 +176,7 @@ const MultiContent = ({ ids }: { ids: Array<string> }) => {
                                 }}
                                 active={getAcOnMap(items)}
                                 players={getAcForPlayers(items)}
-                                tooltip={"Show AC on map (right click for players)"}
+                                tooltip={"在地图上显示/隐藏护甲（右键切换玩家可见）"}
                             />
                         </div>
                         <div className={"setting"}>
