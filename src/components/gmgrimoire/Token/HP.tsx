@@ -58,7 +58,7 @@ export const HP = ({ id }: { id: string }) => {
                 color={"#2248ff"}
             />
             <div className={"current-hp"}>
-                <Tippy content={"Set current HP"}>
+                <Tippy content={"设置当前生命值"}>
                     <input
                         ref={hpRef}
                         type={"text"}
@@ -97,7 +97,7 @@ export const HP = ({ id }: { id: string }) => {
                     />
                 </Tippy>
                 <span className={"divider"}></span>
-                <Tippy content={"Set max HP"}>
+                <Tippy content={"设置最大生命值"}>
                     <input
                         type={"text"}
                         ref={maxHpRef}
@@ -120,7 +120,7 @@ export const HP = ({ id }: { id: string }) => {
                 </Tippy>
             </div>
             <div className={"bottom-row"}>
-                <Tippy content={"set temp HP"}>
+                <Tippy content={"设置临时生命值"}>
                     <input
                         type={"text"}
                         defaultValue={data.stats.tempHp}
@@ -159,7 +159,7 @@ export const HP = ({ id }: { id: string }) => {
                         }}
                         active={data.hpOnMap}
                         players={!!data.playerMap?.hp}
-                        tooltip={"Add HP to map (players: right click)"}
+                        tooltip={"在地图上显示/隐藏生命值（右键切换玩家可见）"}
                     />
                 ) : null}
             </div>
