@@ -36,7 +36,7 @@ export const AC = ({ id, hideExtras }: { id: string; hideExtras?: boolean }) => 
     return (
         <div className={`token-ac ${hideExtras ? "no-extras" : ""}`}>
             {!hideExtras ? <ACSvg /> : null}
-            <Tippy content={"Set AC"}>
+            <Tippy content={"设置护甲等级"}>
                 <input
                     className={"ac-input"}
                     type={"text"}
@@ -69,7 +69,7 @@ export const AC = ({ id, hideExtras }: { id: string; hideExtras?: boolean }) => 
                     }}
                     active={data.acOnMap}
                     players={!!data.playerMap?.ac}
-                    tooltip={"Add AC to map (players: right click)"}
+                    tooltip={"在地图上显示/隐藏护甲（右键切换玩家可见）"}
                 />
             ) : null}
         </div>
