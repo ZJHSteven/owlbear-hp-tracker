@@ -310,55 +310,59 @@ const Content = () => {
                 {playerContext.role === "GM" ? (
                     <div className={"ui-buttons"}>
                         <div className={`headings`}>
-                            <Tippy content={"Toggle Player Preview Mode"}>
-                                <button
-                                    className={`toggle-preview ${playerPreview ? "active" : ""}`}
-                                    onClick={() => {
-                                        setPlayerPreview(!playerPreview);
-                                    }}
-                                >
-                                    <PlayerSvg />
-                                </button>
-                            </Tippy>
-                            <Tippy content={"Toggle Battle Focus"}>
-                                <button
-                                    className={`toggle-battle-focus ${battleFocus ? "active" : ""}`}
-                                    onClick={() => {
-                                        setBattleFocus(!battleFocus);
-                                    }}
-                                >
-                                    <FocusSvg />
-                                </button>
-                            </Tippy>
-                            <span className={"initiative-order"}>
-                                <InitiativeSvg />
-                                <Tippy content={"Toggle Initiative Auto Sorting"}>
-                                    <button
-                                        className={`sort-toggle button ${enableAutoSort ? "active" : ""}`}
-                                        onClick={async () => {
-                                            const autoSort = !scene?.enableAutoSort;
-                                            await updateSceneMetadata(scene, { enableAutoSort: autoSort });
-                                        }}
-                                    ></button>
-                                </Tippy>
-                                <Tippy content={"Initiative Order"}>
-                                    <button
-                                        className={`sort-button button ${sortInitiative == SORT.DESC ? "reverse" : ""}`}
-                                        disabled={!enableAutoSort}
-                                        title={"Order By Initiative"}
-                                        onClick={async () => {
-                                            const newOrder = !isUndefined(sortInitiative)
-                                                ? modulo(sortInitiative + 1, 2)
-                                                : SORT.DESC;
-                                            await updateSceneMetadata(scene, {
-                                                sortMethod: newOrder,
-                                            });
-                                        }}
-                                    >
-                                        <ArrowSvg />
-                                    </button>
-                                </Tippy>
-                            </span>
+            {/* 切换“玩家预览模式”按钮的提示文字 */}
+            <Tippy content={"切换玩家预览模式"}>
+                <button
+                    className={`toggle-preview ${playerPreview ? "active" : ""}`}
+                    onClick={() => {
+                        setPlayerPreview(!playerPreview);
+                    }}
+                >
+                    <PlayerSvg />
+                </button>
+            </Tippy>
+            {/* 切换“战斗专注模式”按钮的提示文字 */}
+            <Tippy content={"切换战斗专注模式"}>
+                <button
+                    className={`toggle-battle-focus ${battleFocus ? "active" : ""}`}
+                    onClick={() => {
+                        setBattleFocus(!battleFocus);
+                    }}
+                >
+                    <FocusSvg />
+                </button>
+            </Tippy>
+            <span className={"initiative-order"}>
+                <InitiativeSvg />
+                {/* 自动按先攻排序的开关提示 */}
+                <Tippy content={"切换先攻自动排序"}>
+                    <button
+                        className={`sort-toggle button ${enableAutoSort ? "active" : ""}`}
+                        onClick={async () => {
+                            const autoSort = !scene?.enableAutoSort;
+                            await updateSceneMetadata(scene, { enableAutoSort: autoSort });
+                        }}
+                    ></button>
+                </Tippy>
+                {/* 先攻排序方向按钮提示 */}
+                <Tippy content={"先攻顺序方向"}>
+                    <button
+                        className={`sort-button button ${sortInitiative == SORT.DESC ? "reverse" : ""}`}
+                        disabled={!enableAutoSort}
+                        title={"按先攻排序"}
+                        onClick={async () => {
+                            const newOrder = !isUndefined(sortInitiative)
+                                ? modulo(sortInitiative + 1, 2)
+                                : SORT.DESC;
+                            await updateSceneMetadata(scene, {
+                                sortMethod: newOrder,
+                            });
+                        }}
+                    >
+                        <ArrowSvg />
+                    </button>
+                </Tippy>
+            </span>
                         </div>
                         <BattleRounds />
                     </div>
