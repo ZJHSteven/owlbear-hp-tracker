@@ -207,7 +207,7 @@ export const DropGroup = (props: DropGroupProps) => {
                             <span>{props.title}</span>
                         </div>
                     </Tippy>
-                    <Tippy content={groups.includes(props.title) ? "Remove from Battle" : "Add to Battle"}>
+                    <Tippy content={groups.includes(props.title) ? "移出战斗" : "加入战斗"}>
                         <button
                             className={`button battle-state ${groups.includes(props.title) ? "active" : ""}`}
                             onClick={() => {
@@ -234,7 +234,7 @@ export const DropGroup = (props: DropGroupProps) => {
                             }}
                             active={getHpOnMap(props.list)}
                             players={getHpForPlayers(props.list)}
-                            tooltip={"Show HP on map (right click for players)"}
+                            tooltip={"在地图上显示/隐藏生命值（右键切换玩家可见）"}
                         />
                     </div>
                     <div className={"setting"}>
@@ -248,7 +248,7 @@ export const DropGroup = (props: DropGroupProps) => {
                             }}
                             active={getAcOnMap(props.list)}
                             players={getAcForPlayers(props.list)}
-                            tooltip={"Show AC on map (right click for players)"}
+                            tooltip={"在地图上显示/隐藏护甲（右键切换玩家可见）"}
                         />
                     </div>
                     <div className={"setting"}>
@@ -268,7 +268,7 @@ export const DropGroup = (props: DropGroupProps) => {
                         >
                             <button
                                 ref={initButtonRef}
-                                title={"Roll Initiative (including initiative modifier from statblock)"}
+                                title={"掷先攻（自动带入人物卡的先攻加值）"}
                                 className={`dice-button button`}
                                 disabled={
                                     getRoomDiceUser(room, playerContext.id)?.diceRendering &&
@@ -321,7 +321,7 @@ export const DropGroup = (props: DropGroupProps) => {
                                     }
                                 }}
                             >
-                                {defaultHidden ? "SHOW" : "HIDE"}
+                                {defaultHidden ? "显示给所有人" : "仅自己可见"}
                             </button>
                         </div>
                     </div>
@@ -334,7 +334,7 @@ export const DropGroup = (props: DropGroupProps) => {
                                     rest(props.list, "Short Rest");
                                 }}
                             >
-                                short
+                                短休
                             </button>
                             <button
                                 className={"button long"}
@@ -342,7 +342,7 @@ export const DropGroup = (props: DropGroupProps) => {
                                     rest(props.list, "Long Rest");
                                 }}
                             >
-                                long
+                                长休
                             </button>
                         </div>
                     ) : null}
